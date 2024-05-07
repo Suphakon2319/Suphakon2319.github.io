@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แบบฟอร์มข้อมูล</title>
+</head>
+<body>
+    <h2>กรอกข้อมูล</h2>
+    <form id="myForm">
+        <label for="firstName">ชื่อ:</label><br>
+        <input type="text" id="firstName" name="firstName"><br>
+        
+        <label for="lastName">นามสกุล:</label><br>
+        <input type="text" id="lastName" name="lastName"><br>
+        
+        <label for="email">อีเมล:</label><br>
+        <input type="email" id="email" name="email"><br>
+        
+        <label for="phoneNumber">หมายเลขโทรศัพท์:</label><br>
+        <input type="tel" id="phoneNumber" name="phoneNumber"><br><br>
+        
+        <button type="button" onclick="populateForm()">ดึงข้อมูลและกรอกลงฟอร์ม</button>
+    </form>
+
+    <script>
+        function populateForm() {
+            // ดึงข้อมูล JSON จาก URL
+            fetch('https://script.google.com/macros/s/AKfycby4M8yeaRPro9ncsGkDyX2pl4LloikoD4Mf9W6CYQZc_Q8IBDgwI9Ikofry5_AZuCXM7w/exec')
+                .then(response => response.json())
+                .then(data => {
+                    // นำข้อมูล JSON มากรอกลงในฟอร์ม
+                    document.getElementById('firstName').value = data.firstName;
+                    document.getElementById('lastName').value = data.lastName;
+                    document.getElementById('email').value = data.email;
+                    document.getElementById('phoneNumber').value = data.phoneNumber;
+                })
+                .catch(error => console.error('เกิดข้อผิดพลาด: ', error));
+        }
+    </script>
+</body>
+</html>
