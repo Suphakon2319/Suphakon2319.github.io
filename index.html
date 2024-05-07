@@ -25,17 +25,25 @@
 
     <script>
         function populateForm() {
-            // ดึงข้อมูล JSON จาก URL
-            fetch('https://script.google.com/macros/s/AKfycbweuY-uVN-72VnzDmakty5YBd1mgq1QANm8u_RlhNy6FWEXJa_VIzaBs_CthvUnF0o1LA/exec')
-                .then(response => response.json())
-                .then(data => {
-                    // นำข้อมูล JSON มากรอกลงในฟอร์ม
-                    document.getElementById('firstName').value = data.firstName;
-                    document.getElementById('lastName').value = data.lastName;
-                    document.getElementById('email').value = data.email;
-                    document.getElementById('phoneNumber').value = data.phoneNumber;
-                })
-                .catch(error => console.error('เกิดข้อผิดพลาด: ', error));
+            var request = new XMLHttpRequest();
+            var url = 'https://script.google.com/macros/s/AKfycbweuY-uVN-72VnzDmakty5YBd1mgq1QANm8u_RlhNy6FWEXJa_VIzaBs_CthvUnF0o1LA/exec';
+            
+            request.open('GET', url, true);
+
+            request.onload = function() {
+                if (request.status >= 200 && request.status < 400) {
+                    var data = JSON.parse(request.responseText);
+                    
+                    document.getElementById('firstName').value = data.firstName || '';
+                    document.getElementById('lastName').value = data.lastName || '';
+                    document.getElementById('email').value = data.email || '';
+                    document.getElementById('phoneNumber').value = data.phoneNumber || '';
+                } else {
+                    console.error('Failed to load data');
+                }
+            };
+
+            request.send();
         }
     </script>
 </body>
