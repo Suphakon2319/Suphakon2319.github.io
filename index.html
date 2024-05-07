@@ -24,13 +24,9 @@
     </form>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            populateForm();
-        });
-
         function populateForm() {
             // ดึงข้อมูล JSON จาก URL
-            fetch('https://script.google.com/macros/s/AKfycby4M8yeaRPro9ncsGkDyX2pl4LloikoD4Mf9W6CYQZc_Q8IBDgwI9Ikofry5_AZuCXM7w/exec')
+            fetch('https://script.google.com/macros/s/AKfycbweuY-uVN-72VnzDmakty5YBd1mgq1QANm8u_RlhNy6FWEXJa_VIzaBs_CthvUnF0o1LA/exec')
                 .then(response => response.json())
                 .then(data => {
                     // นำข้อมูล JSON มากรอกลงในฟอร์ม
