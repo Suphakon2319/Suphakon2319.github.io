@@ -24,6 +24,10 @@
     </form>
 
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            populateForm();
+        });
+
         function populateForm() {
             // ดึงข้อมูล JSON จาก URL
             fetch('https://script.google.com/macros/s/AKfycby4M8yeaRPro9ncsGkDyX2pl4LloikoD4Mf9W6CYQZc_Q8IBDgwI9Ikofry5_AZuCXM7w/exec')
